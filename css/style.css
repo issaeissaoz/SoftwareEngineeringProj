@@ -1056,3 +1056,17 @@ textarea#comment.massage-bt::placeholder {
 .margin_top90 {
   margin-top: 90px;
 }
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.price-display {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

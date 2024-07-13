@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>TasteSwift</title>
+    <meta name="keywords" content="Order food delivery menu Restaurants" />
+    <meta
+      name="description"
+      content="A website for ordering food items and getting them delivered."
+    />
+    <meta name="author" content="Group Proj" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- font css -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+    <!-- Tweaks for older IEs-->
+    <link
+      rel="stylesheet"
+      href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+    />
+    <style>
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .price-display {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html"
+          ><h1 class="logo">TasteSwift</h1></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><span class="padding5"><i class="fa fa-angle-right"></i></span
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="menu.html"
+                ><span class="padding5"><i class="fa fa-angle-right"></i></span
+                >Menu</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="order.html"
+                ><span class="padding5"><i class="fa fa-angle-right"></i></span
+                >Order</a
+              >
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <div class="login_bt">
+              <ul>
+                <li><a href="login.html">Login</a></li>
+                <li>
+                  <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div class="container mt-5">
+      <h2>Fill in your Order</h2>
+      <form>
+        <div class="form-group">
+          <label for="city">Select City</label>
+          <select
+            class="form-control"
+            id="city"
+            required
+            onchange="updateRestaurants()"
+          >
+            <option value="" disabled selected>Select City</option>
+            <option value="Nairobi">Nairobi</option>
+            <option value="Mombasa">Mombasa</option>
+            <option value="Kisumu">Kisumu</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="restaurant">Select Restaurant</label>
+          <select class="form-control" id="restaurant" required>
+            <option value="" disabled selected>Select Restaurant</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pizzaSize">Pizza Size</label>
+          <select
+            class="form-control"
+            id="pizzaSize"
+            required
+            onchange="updatePrice()"
+          >
+            <option value="" disabled selected>Select Size</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pizzaType">Pizza Type</label>
+          <select
+            class="form-control"
+            id="pizzaType"
+            required
+            onchange="updatePrice()"
+          >
+            <option value="" disabled selected>Select Pizza</option>
+            <option value="margherita" data-base-price="5">Margherita</option>
+            <option value="pepperoni" data-base-price="8">Pepperoni</option>
+            <option value="bbqChicken" data-base-price="10">BBQ Chicken</option>
+            <option value="veggie" data-base-price="7">Veggie</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="paymentMethod">Payment Method</label>
+          <select
+            class="form-control"
+            id="paymentMethod"
+            required
+            onchange="updatePaymentMethod()"
+          >
+            <option value="" disabled selected>Select Payment Method</option>
+            <option value="mpesa">Mpesa</option>
+            <option value="paypal">PayPal</option>
+            <option value="card">Card</option>
+          </select>
+        </div>
+        <div id="paymentDetails">
+          <div id="mpesaDetails" class="hidden">
+            <div class="form-group">
+              <label for="mpesaPhone">Mpesa Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="mpesaPhone"
+                placeholder="Enter phone number (+254...)"
+                required
+              />
+            </div>
+          </div>
+          <div id="paypalDetails" class="hidden">
+            <div class="form-group">
+              <label for="paypalEmail">PayPal Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="paypalEmail"
+                placeholder="Enter PayPal email"
+                required
+              />
+            </div>
+          </div>
+          <div id="cardDetails" class="hidden">
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cardNumber"
+                placeholder="Enter card number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cardExpiry">Expiry Date</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cardExpiry"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cardCVC">CVC</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cardCVC"
+                placeholder="CVC"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="Enter your address"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Order</button>
+      </form>
+    </div>
+    <div class="price-display">
+      <h4>Total Price: <span id="price">$0.00</span></h4>
+    </div>
+    <script>
+      const restaurants = {
+        Nairobi: ["Restaurant 1", "Restaurant 2", "Restaurant 3"],
+        Mombasa: ["Restaurant A", "Restaurant B", "Restaurant C"],
+        Kisumu: ["Restaurant X", "Restaurant Y", "Restaurant Z"],
+      };
+
+      function updateRestaurants() {
+        const citySelect = document.getElementById("city");
+        const restaurantSelect = document.getElementById("restaurant");
+        const selectedCity = citySelect.value;
+
+        restaurantSelect.innerHTML =
+          '<option value="" disabled selected>Select Restaurant</option>';
+
+        if (restaurants[selectedCity]) {
+          restaurants[selectedCity].forEach((restaurant) => {
+            const option = document.createElement("option");
+            option.value = restaurant;
+            option.text = restaurant;
+            restaurantSelect.add(option);
+          });
+        }
+      }
+
+      function updatePrice() {
+        const pizzaTypeSelect = document.getElementById("pizzaType");
+        const pizzaSizeSelect = document.getElementById("pizzaSize");
+
+        const selectedPizza =
+          pizzaTypeSelect.options[pizzaTypeSelect.selectedIndex];
+        const selectedSize = pizzaSizeSelect.value;
+
+        const basePrice = parseFloat(
+          selectedPizza.getAttribute("data-base-price")
+        );
+        let sizeMultiplier = 0;
+
+        if (selectedSize === "medium") {
+          sizeMultiplier = 3;
+        } else if (selectedSize === "large") {
+          sizeMultiplier = 6;
+        }
+
+        const totalPrice = basePrice + sizeMultiplier;
+        document.getElementById("price").textContent =
+          "$" + totalPrice.toFixed(2);
+      }
+
+      function updatePaymentMethod() {
+        const paymentMethodSelect = document.getElementById("paymentMethod");
+        const selectedPaymentMethod = paymentMethodSelect.value;
+
+        document.getElementById("mpesaDetails").classList.add("hidden");
+        document.getElementById("paypalDetails").classList.add("hidden");
+        document.getElementById("cardDetails").classList.add("hidden");
+
+        if (selectedPaymentMethod === "mpesa") {
+          document.getElementById("mpesaDetails").classList.remove("hidden");
+        } else if (selectedPaymentMethod === "paypal") {
+          document.getElementById("paypalDetails").classList.remove("hidden");
+        } else if (selectedPaymentMethod === "card") {
+          document.getElementById("cardDetails").classList.remove("hidden");
+        }
+      }
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
